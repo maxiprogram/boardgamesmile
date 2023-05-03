@@ -15,7 +15,12 @@ qt_add_executable(appBoardGame
 qt_add_qml_module(appBoardGame
     URI BoardGame
     VERSION 1.0
-    QML_FILES Main.qml
+    QML_FILES
+        Main.qml
+        Cell.qml
+        js/scaling-ratio.js
+    RESOURCES
+        images/cell.png
 )
 
 set_target_properties(appBoardGame PROPERTIES
