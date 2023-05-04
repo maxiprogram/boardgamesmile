@@ -12,9 +12,19 @@ qt_add_executable(appBoardGame
     main.cpp
 )
 
+#qt_add_qml_module(mytest
+#    URI net.maxiprogram.scalingratiowrapper
+#    VERSION 1.0
+#    SOURCES
+#        scalingratiowrapper.h scalingratiowrapper.cpp
+#)
+
+
 qt_add_qml_module(appBoardGame
     URI BoardGame
     VERSION 1.0
+    SOURCES
+        scalingratiowrapper.h scalingratiowrapper.cpp
     QML_FILES
         Main.qml
         Cell.qml

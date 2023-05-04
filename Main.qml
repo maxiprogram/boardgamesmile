@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Window
+
 import "js/scaling-ratio.js" as ScalingRatio
+import net.maxiprogram.scalingratiowrapper
 
 Window {
     id: mainWindow
@@ -9,6 +11,24 @@ Window {
     visible: true
     title: qsTr("Hello World")
     color: "black"
+
+    ScalingRatioWrapper {
+        id: wrapper
+        author: "Init qml"
+        refWidth: 720
+        refHeight: 1600
+        Component.onCompleted: {
+            console.debug("ScalingRatioWrapper.onCompleted author="+author);
+            wrapper.calculateRatio();
+            console.debug("ScalingRatioWrapper.onCompleted ratio="+ratio);
+        }
+    }
+
+
+//    ScalingRatioWrapper {
+//        author: "Amelie"
+//        creationDate: new Date()
+//    }
 
     Cell {
         id: cell
