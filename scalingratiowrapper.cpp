@@ -1,10 +1,10 @@
 #include "scalingratiowrapper.h"
 
-ScalingRatioWrapper::ScalingRatioWrapper(QObject *parent)
-    : QObject{parent}
+ScalingRatioWrapper::ScalingRatioWrapper(QQuickItem *parent)
+    : QQuickItem{parent}
 {
-    qDebug()<<"ScalingRatioWrapper::ScalingRatioWrapper author:"<<m_author;
-    ratio = 1;
+    qDebug()<<"ScalingRatioWrapper::ScalingRatioWrapper()";
+    resultRatio = 1;
 }
 
 void ScalingRatioWrapper::setRefWidth(qreal value)
@@ -19,6 +19,12 @@ void ScalingRatioWrapper::setRefHeight(qreal value)
     emit refHeightChanged();
 }
 
+void ScalingRatioWrapper::setRatio(qreal value)
+{
+    resultRatio = value;
+    emit ratioChanged();
+}
+
 qreal ScalingRatioWrapper::getRefWidth()
 {
     return refWidth;
@@ -27,6 +33,11 @@ qreal ScalingRatioWrapper::getRefWidth()
 qreal ScalingRatioWrapper::getRefHeight()
 {
     return refHeight;
+}
+
+qreal ScalingRatioWrapper::getRatio()
+{
+    return resultRatio;
 }
 
 
@@ -38,8 +49,47 @@ void ScalingRatioWrapper::calculateRatio()
     qreal height = qMax(rect.width(), rect.height());
     qreal width = qMin(rect.width(), rect.height());
     //qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    ratio = qMin(height/refHeight, width/refWidth);
+    resultRatio = qMin(height/refHeight, width/refWidth);
     //m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
 
-    qDebug()<<"ratio="<<ratio;
+    qDebug()<<"ratio="<<resultRatio;
+}
+
+void ScalingRatioWrapper::calculateRatioRef(qreal refWidth, qreal refHeight)
+{
+    qDebug()<<"ScalingRatioWrapper::calculateRatioRef()";
+
+    QRect rect = QGuiApplication::primaryScreen()->geometry();
+    qreal height = qMax(rect.width(), rect.height());
+    qreal width = qMin(rect.width(), rect.height());
+    //qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    resultRatio = qMin(height/refHeight, width/refWidth);
+    //m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
+
+    qDebug()<<"ratio="<<resultRatio;
+}
+
+void ScalingRatioWrapper::calculateRatioRefTo(qreal refWidth, qreal refHeight, qreal realWidth, qreal realHeight)
+{
+    qDebug()<<"ScalingRatioWrapper::calculateRatioRefTo()";
+
+    //qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    resultRatio = qMin(realHeight/refHeight, realWidth/refWidth);
+    //m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
+
+    qDebug()<<"ratio="<<resultRatio;
+}
+
+void ScalingRatioWrapper::updateScaleChildrens()
+{
+    qDebug()<<"ScalingRatioWrapper::updateScaleChildrens()";
+
+    QObjectList childrens = this->children();
+
+    QObjectList listItem;
+    foreach (auto children, childrens) {
+        //children->setProperty("x", children->property("x").toReal()*resultRatio);
+        qDebug()<<children;
+        qDebug()<<children->property("x");
+    }
 }

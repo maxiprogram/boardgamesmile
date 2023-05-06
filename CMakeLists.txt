@@ -27,10 +27,16 @@ qt_add_qml_module(appBoardGame
         scalingratiowrapper.h scalingratiowrapper.cpp
     QML_FILES
         Main.qml
+        Start.qml
+        GameLevel.qml
+        Player.qml
         Cell.qml
+        Test.qml
         js/scaling-ratio.js
+        js/logic.js
     RESOURCES
         images/cell.png
+        images/player.png
 )
 
 set_target_properties(appBoardGame PROPERTIES

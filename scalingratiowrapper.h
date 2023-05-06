@@ -5,57 +5,43 @@
 #include <QtQml/qqmlregistration.h>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QQuickItem>
 
 #include <QDebug>
 
-class ScalingRatioWrapper : public QObject
+class ScalingRatioWrapper : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(QString author READ author WRITE setAuthor NOTIFY authorChanged)
-//    Q_PROPERTY(QDateTime creationDate READ creationDate WRITE setCreationDate NOTIFY creationDateChanged)
-
     Q_PROPERTY(qreal refWidth READ getRefWidth WRITE setRefWidth NOTIFY refWidthChanged)
     Q_PROPERTY(qreal refHeight READ getRefHeight WRITE setRefHeight NOTIFY refHeightChanged)
+    Q_PROPERTY(qreal ratio READ getRatio WRITE setRatio NOTIFY ratioChanged)
     QML_ELEMENT
 public:
-    explicit ScalingRatioWrapper(QObject *parent = nullptr);
+    explicit ScalingRatioWrapper(QQuickItem *parent = nullptr);
 
-    void calculateRatio();
-    void calculateRatio(qreal refWidth, qreal refHeight);
-    void calculateRatio(qreal refWidth, qreal refHeight, qreal realWidth, qreal realHeight);
+    Q_INVOKABLE void calculateRatio();
+    Q_INVOKABLE void calculateRatioRef(qreal refWidth, qreal refHeight);
+    Q_INVOKABLE void calculateRatioRefTo(qreal refWidth, qreal refHeight, qreal realWidth, qreal realHeight);
+    Q_INVOKABLE void updateScaleChildrens();
 
     void setRefWidth(qreal value);
     void setRefHeight(qreal value);
+    void setRatio(qreal value);
 
     qreal getRefWidth();
     qreal getRefHeight();
+    qreal getRatio();
 
-
-    void setAuthor(const QString &a) {
-        qDebug()<<"setAuthor() a="<<a;
-        if (a != m_author) {
-            m_author = a;
-            emit authorChanged();
-        }
-    }
-
-    QString author() const {
-        qDebug()<<"getAuthor() a="<<m_author;
-        return m_author;
-    }
 private:
-    QString m_author;
-
     qreal refWidth;
     qreal refHeight;
 
-    qreal ratio;
+    qreal resultRatio;
 
 signals:
-    void authorChanged();
-
     void refWidthChanged();
     void refHeightChanged();
+    void ratioChanged();
 
 };
 
