@@ -12,6 +12,7 @@ Image {
     property int previousPosCell: 0
     property bool isMoveRight: true
     property list<string> listMove: []
+    property string name: "player"
 
     states: [
         State {
@@ -49,12 +50,25 @@ Image {
         property: "x"
         from: x
         to: x - (120 *  wrapper.ratio)
-        duration: 3000
+        duration: 500
         onFinished: {
-            console.debug("End animRight");
             player.state = "";
             if(player.listMove.length) {
+                console.debug("End animRight");
                 player.state = player.listMove.pop();
+            } else {
+                if(itemGame.statusGame !== "win") {
+                    itemGame.statusGame = "game"
+                    console.debug("Try change state: "+"EndStep"+player.name);
+                    if(player.name === "PlayerAI") {
+                        itemGame.state = "AwaitStep";
+                    } else {
+                        itemGame.state = "EndStep"+player.name;
+                    }
+                    console.debug("Changed state");
+                } else if(itemGame.statusGame === "win") {
+                    textDebug.text = "YOU WIN "+player.name;
+                }
             }
         }
     }
@@ -65,12 +79,25 @@ Image {
         property: "x"
         from: x
         to: x + (120 *  wrapper.ratio)
-        duration: 3000
+        duration: 500
         onFinished: {
-            console.debug("End animRight");
             player.state = "";
             if(player.listMove.length) {
+                console.debug("End animRight");
                 player.state = player.listMove.pop();
+            } else {
+                if(itemGame.statusGame !== "win") {
+                    itemGame.statusGame = "game"
+                    console.debug("Try change state: "+"EndStep"+player.name);
+                    if(player.name === "PlayerAI") {
+                        itemGame.state = "AwaitStep";
+                    } else {
+                        itemGame.state = "EndStep"+player.name;
+                    }
+                    console.debug("Changed state");
+                } else if(itemGame.statusGame === "win") {
+                    textDebug.text = "YOU WIN "+player.name;
+                }
             }
         }
     }
@@ -81,12 +108,25 @@ Image {
         property: "y"
         from: y
         to: y - (120 *  wrapper.ratio)
-        duration: 3000
+        duration: 500
         onFinished: {
-            console.debug("End animUp");
             player.state = "";
             if(player.listMove.length) {
+                console.debug("End animUp");
                 player.state = player.listMove.pop();
+            } else {
+                if(itemGame.statusGame !== "win") {
+                    itemGame.statusGame = "game"
+                    console.debug("Try change state: "+"EndStep"+player.name);
+                    if(player.name === "PlayerAI") {
+                        itemGame.state = "AwaitStep";
+                    } else {
+                        itemGame.state = "EndStep"+player.name;
+                    }
+                    console.debug("Changed state");
+                } else if(itemGame.statusGame === "win") {
+                    textDebug.text = "YOU WIN "+player.name;
+                }
             }
         }
     }
@@ -96,48 +136,79 @@ Image {
         console.debug("move()");
         console.debug("Before currentPosCell: "+player.currentPosCell+" previousPosCell: "+player.previousPosCell);
 
+        //TEST
+//        currentPosCell = 19;
+//        randNumber = 6;
+//        player.x = player.x + (120 *  wrapper.ratio) * 4;
+//        player.y = player.y - (120 *  wrapper.ratio) * 3;
+//        isMoveRight = false;
 
 
         let currCol = player.currentPosCell % 5;
+        //currCol++;
         let currRow = Math.trunc(player.currentPosCell / 5);
+        //currRow++;
         console.debug("Current row: "+currRow+" col: "+currCol);
 
         let newPosCell = player.currentPosCell + randNumber;
+        if(newPosCell >= 49) { //Если больше некуда ходить, конец игры
+            newPosCell = 49;
+            randNumber = newPosCell-player.currentPosCell;
+            itemGame.statusGame = "win";
+        }
         let newCol = newPosCell % 5;
+        //newCol++;
         let newRow = Math.trunc(newPosCell / 5);
-        console.debug("Current row: "+currRow+" col: "+currCol);
+        //newRow++;
+        console.debug("New row: "+newRow+" col: "+newCol);
 
         let prevCol = player.previousPosCell % 5;
         let prevRow = Math.trunc(player.previousPosCell / 5);
-        console.debug("previous row: "+prevRow+" col: "+prevCol);
+        console.debug("Previous row: "+prevRow+" col: "+prevCol);
 
-        if(newRow !== currRow) {
-            let countStep = 5 - newCol;
-            if(countStep > 0) {
-                let countNewRowStep = 5 - countStep
+        if(newRow > currRow) { //Если сложный путь, придется проходить несколько новых строк
+            let countRow = newRow - currRow;
+            if(countRow === 1) { //Если придется пройти 1 новую строку
+                let countNewRowStep = 5 - newCol;
+                if(countNewRowStep > 0) {
+                    countNewRowStep = 5 - countNewRowStep
+                    if(isMoveRight) {
+                        for(let i=0; i<countNewRowStep; i++) {
+                            player.listMove.push("animLeft");
+                        }
+                    } else {
+                        for(let i=0; i<countNewRowStep; i++) {
+                            player.listMove.push("animRight");
+                        }
+                    }
+                }
+                player.listMove.push("animUp");
+                let countOldRowStep = randNumber - countNewRowStep - 1;
                 if(isMoveRight) {
-                    for(let i=0; i<countNewRowStep; i++) {
+                    for(let i=0; i<countOldRowStep; i++) {
+                        player.listMove.push("animRight");
+                    }
+                } else {
+                    for(let i=0; i<countOldRowStep; i++) {
+                        player.listMove.push("animLeft");
+                    }
+                }
+                isMoveRight = !isMoveRight;
+            } else if(countRow === 2) { //Если придется пройти 2 новых строки
+                player.listMove.push("animUp");
+                let countStep = randNumber - countRow;
+                if(isMoveRight) {
+                    for(let i=0; i<countStep; i++) {
                         player.listMove.push("animLeft");
                     }
                 } else {
-                    for(let i=0; i<countNewRowStep; i++) {
+                    for(let i=0; i<countStep; i++) {
                         player.listMove.push("animRight");
                     }
                 }
+                player.listMove.push("animUp");
             }
-            player.listMove.push("animUp");
-            countStep--;
-            if(isMoveRight) {
-                for(let i=0; i<countStep; i++) {
-                    player.listMove.push("animRight");
-                }
-            } else {
-                for(let i=0; i<countStep; i++) {
-                    player.listMove.push("animLeft");
-                }
-            }
-            isMoveRight = !isMoveRight;
-        } else {
+        } else { //Если простой путь, придется ходить по текущей строке
             if(isMoveRight) {
                 for(let i=0; i<randNumber; i++) {
                     player.listMove.push("animRight");
@@ -150,7 +221,7 @@ Image {
         }
 
         player.previousPosCell = player.currentPosCell;
-        player.currentPosCell += randNumber;
+        player.currentPosCell = newPosCell;
         console.debug("After currentPosCell: "+player.currentPosCell+" previousPosCell: "+player.previousPosCell);
 
         player.state = player.listMove.pop();
@@ -159,15 +230,7 @@ Image {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            listMove.push("animUp");
-            listMove.push("animUp");
-            listMove.push("animLeft");
-            listMove.push("animUp");
-            listMove.push("animRight");
-            listMove.push("animUp");
-            listMove.push("animUp");
-            console.debug(listMove);
-            console.debug(listMove.length);
+            console.debug(name);
             //player.state = listMove.pop();
         }
     }

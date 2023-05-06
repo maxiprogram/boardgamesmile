@@ -23,7 +23,7 @@ Window {
             wrapper.calculateRatioRef(720, 1600);
             wrapper.calculateRatioRefTo(720, 1600, 1920, 1080);
             wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
-            wrapper.updateScaleChildrens();
+            //wrapper.updateScaleChildrens();
             console.debug("QML ScalingRatioWrapper.onCompleted ratio="+ratio);
         }
 

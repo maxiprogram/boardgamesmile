@@ -35,7 +35,8 @@ qt_add_qml_module(appBoardGame
         js/scaling-ratio.js
         js/logic.js
     RESOURCES
-        images/cell.png
+        images/cell0.png
+        images/cell1.png
         images/player.png
 )
 

@@ -10,7 +10,7 @@ Image {
     id: cell
     width: 120
     height: 120
-    source: "images/cell.png"
+    source: "images/cell1.png"
     property string textCell
 
     RotationAnimator {
