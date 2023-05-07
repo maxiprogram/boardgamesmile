@@ -44,6 +44,15 @@ Image {
         }
     ]
 
+    Timer {
+        interval: 300
+        running: true
+        repeat: true
+        onTriggered: {
+            player.mirror = !player.mirror;
+        }
+    }
+
     NumberAnimation {
         id: animLeft
         target: player

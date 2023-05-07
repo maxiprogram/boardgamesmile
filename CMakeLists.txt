@@ -37,7 +37,11 @@ qt_add_qml_module(appBoardGame
     RESOURCES
         images/cell0.png
         images/cell1.png
+        images/cell2.png
+        images/cell3.png
         images/player.png
+        images/playerAI.png
+        images/cube.gif
 )
 
 set_target_properties(appBoardGame PROPERTIES
