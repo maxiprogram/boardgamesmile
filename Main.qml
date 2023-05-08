@@ -8,6 +8,7 @@ Window {
     id: mainWindow
     width: 405
     height: 900
+    visibility: "FullScreen"
     visible: true
     title: qsTr("Hello World")
     color: "black"
@@ -20,11 +21,12 @@ Window {
         Component.onCompleted: {
             console.debug("QML ScalingRatioWrapper.onCompleted");
             wrapper.calculateRatio();
-            wrapper.calculateRatioRef(720, 1600);
-            wrapper.calculateRatioRefTo(720, 1600, 1920, 1080);
+            //wrapper.calculateRatioRef(720, 1600);
+            //wrapper.calculateRatioRefTo(720, 1600, 1920, 1080);
             wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
             //wrapper.updateScaleChildrens();
             console.debug("QML ScalingRatioWrapper.onCompleted ratio="+ratio);
+            console.debug("QML realWidth="+Screen.width+" realHeight="+Screen.height);
         }
 
         Loader {

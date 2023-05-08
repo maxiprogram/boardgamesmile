@@ -45,6 +45,7 @@ void ScalingRatioWrapper::calculateRatio()
 {
     qDebug()<<"ScalingRatioWrapper::calculateRatio()";
 
+    qreal realPixelRatio = QGuiApplication::primaryScreen()->devicePixelRatio();
     QRect rect = QGuiApplication::primaryScreen()->geometry();
     qreal height = qMax(rect.width(), rect.height());
     qreal width = qMin(rect.width(), rect.height());
@@ -52,6 +53,9 @@ void ScalingRatioWrapper::calculateRatio()
     resultRatio = qMin(height/refHeight, width/refWidth);
     //m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
 
+    qDebug()<<"realWidth="<<width<<" realHeight="<<height;
+    qDebug()<<"refWidth="<<refWidth<<" refHeight="<<refHeight;
+    qDebug()<<"devicePixelRatio="<<QGuiApplication::primaryScreen()->devicePixelRatio();
     qDebug()<<"ratio="<<resultRatio;
 }
 
@@ -66,6 +70,9 @@ void ScalingRatioWrapper::calculateRatioRef(qreal refWidth, qreal refHeight)
     resultRatio = qMin(height/refHeight, width/refWidth);
     //m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
 
+    qDebug()<<"realWidth="<<width<<" realHeight="<<height;
+    qDebug()<<"refWidth="<<refWidth<<" refHeight="<<refHeight;
+    qDebug()<<"devicePixelRatio="<<QGuiApplication::primaryScreen()->devicePixelRatio();
     qDebug()<<"ratio="<<resultRatio;
 }
 
@@ -77,6 +84,9 @@ void ScalingRatioWrapper::calculateRatioRefTo(qreal refWidth, qreal refHeight, q
     resultRatio = qMin(realHeight/refHeight, realWidth/refWidth);
     //m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
 
+    qDebug()<<"realWidth="<<realWidth<<" realHeight="<<realHeight;
+    qDebug()<<"refWidth="<<refWidth<<" refHeight="<<refHeight;
+    qDebug()<<"devicePixelRatio="<<QGuiApplication::primaryScreen()->devicePixelRatio();
     qDebug()<<"ratio="<<resultRatio;
 }
 

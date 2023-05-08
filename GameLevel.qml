@@ -11,7 +11,8 @@ Item {
 
     Item {
         id: itemGrid
-        x: 60 * wrapper.ratio
+        //x: 60 * wrapper.ratio
+        anchors.horizontalCenter: parent.horizontalCenter
         y: 80 * wrapper.ratio
         width: 600 * wrapper.ratio
         height: 1200 * wrapper.ratio
@@ -19,7 +20,8 @@ Item {
 
     Rectangle {
         id: itemPanel
-        x: 60 * wrapper.ratio
+        //x: 60 * wrapper.ratio
+        anchors.horizontalCenter: parent.horizontalCenter
         y: 1320 * wrapper.ratio
         width: 600 * wrapper.ratio
         height: 246 * wrapper.ratio
@@ -117,11 +119,13 @@ Item {
     function createPlayer() {
         let width = 78 * wrapper.ratio;
         let height = 121 * wrapper.ratio; //origin 146
-        let x = 60 * wrapper.ratio;
-        let y = 1149 * wrapper.ratio;
+        //let x = 60 * wrapper.ratio;
+        let x = 1 * wrapper.ratio;
+        //let y = 1149 * wrapper.ratio;
+        let y = 1075 * wrapper.ratio;
 
         let player = Qt.createComponent("Player.qml");
-        let playerObject = player.createObject(itemGame, {x: x, y: y, width: width, height: height, name: "Player"});
+        let playerObject = player.createObject(itemGrid, {x: x, y: y, width: width, height: height, name: "Player"});
         if (playerObject === null) {
             // Error Handling
             console.error("Error creating object Player.qml");
@@ -132,11 +136,13 @@ Item {
     function createPlayerAI() {
         let width = 78 * wrapper.ratio;
         let height = 121 * wrapper.ratio; //origin 146
-        let x = 106 * wrapper.ratio;
-        let y = 1149 * wrapper.ratio;
+        //let x = 106 * wrapper.ratio;
+        let x = 46 * wrapper.ratio;
+        //let y = 1149 * wrapper.ratio;
+        let y = 1075 * wrapper.ratio;
 
         let playerAI = Qt.createComponent("Player.qml");
-        let playerObjectAI = playerAI.createObject(itemGame, {x: x, y: y, width: width, height: height, name: "PlayerAI", source: "images/playerAI.png"});
+        let playerObjectAI = playerAI.createObject(itemGrid, {x: x, y: y, width: width, height: height, name: "PlayerAI", source: "images/playerAI.png"});
         if (playerObjectAI === null) {
             // Error Handling
             console.error("Error creating object Player.qml");
