@@ -8,7 +8,7 @@ Window {
     id: mainWindow
     width: 405
     height: 900
-    visibility: "FullScreen"
+    //visibility: "FullScreen"
     visible: true
     title: qsTr("Hello World")
     color: "black"
@@ -79,5 +79,9 @@ Window {
         text: "Width: " + mainWindow.width + " Height: " + mainWindow.height
         color: "red"
     }
+
+//    FpsItem {
+//        anchors.centerIn: parent
+//    }
 
 }

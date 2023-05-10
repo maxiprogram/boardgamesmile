@@ -25,14 +25,23 @@ Item {
         y: 1320 * wrapper.ratio
         width: 600 * wrapper.ratio
         height: 246 * wrapper.ratio
+        color: "#00000000"
 
 
-        Item {
+        Rectangle {
+            anchors.centerIn: itemPanel
+            width: 200 * wrapper.ratio
+            height: 200 * wrapper.ratio
+            color: "#FFFF0000"
+            //border.color: "blue"
+            //border.width: 5
+            radius: 10
 
             AnimatedImage {
                 id: animCube
-                width: 200 * wrapper.ratio
-                height: 200 * wrapper.ratio
+                anchors.centerIn: parent
+                width: 130 * wrapper.ratio
+                height: 130 * wrapper.ratio
                 source: "images/cube.gif"
                 currentFrame: 0
                 playing: false
@@ -108,7 +117,7 @@ Item {
             }
 
             let cell = Qt.createComponent("Cell.qml");
-            let cellObject = cell.createObject(itemGrid, {x: x, y: y, width: width, height: height, textCell: "", source: imgCell});
+            let cellObject = cell.createObject(itemGrid, {x: x, y: y, width: width, height: height, textCell: textCell, source: imgCell});
             if (cellObject === null) {
                 // Error Handling
                 console.error("Error creating object Cell.qml");

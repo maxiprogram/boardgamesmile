@@ -32,6 +32,7 @@ qt_add_qml_module(appBoardGame
         Player.qml
         Cell.qml
         Test.qml
+        FpsItem.qml
         js/scaling-ratio.js
         js/logic.js
     RESOURCES
