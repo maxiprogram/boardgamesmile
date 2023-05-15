@@ -27,12 +27,13 @@ Window {
             //wrapper.updateScaleChildrens();
             console.debug("QML ScalingRatioWrapper.onCompleted ratio="+ratio);
             console.debug("QML realWidth="+Screen.width+" realHeight="+Screen.height);
+
+            loader.state = "Game->Start";
         }
 
         Loader {
             id: loader
             anchors.fill: parent
-            source: "Start.qml"
             states: [
                 State {
                     name: "Start->Game"

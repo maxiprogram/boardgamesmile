@@ -13,17 +13,72 @@ Item {
 //    border.width: 5
 //    radius: 10
 
+    Image {
+        id: imageBackground
+        anchors.fill: parent
+        source: "images/background_menu.png"
+    }
+
+    Image {
+        id: imageButtonStart
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: 261 * wrapper.ratio
+        width: 610 * wrapper.ratio
+        height: 272 * wrapper.ratio
+        source: "images/button_menu.png"
+
+        Text {
+            anchors.centerIn: parent
+            text: "PLAY"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                loader.state = "Start->Game";
+            }
+        }
+    }
+
+    Image {
+        id: imageButtonOption
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: 578 * wrapper.ratio
+        width: 610 * wrapper.ratio
+        height: 272 * wrapper.ratio
+        source: "images/button_menu.png"
+
+        Text {
+            anchors.centerIn: parent
+            text: "OPTION"
+        }
+    }
+
+    Image {
+        id: imageButtonExit
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: 916 * wrapper.ratio
+        width: 610 * wrapper.ratio
+        height: 272 * wrapper.ratio
+        source: "images/button_menu.png"
+
+        Text {
+            anchors.centerIn: parent
+            text: "EXIT"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                Qt.quit();
+            }
+        }
+    }
+
+
     Text {
         anchors.centerIn: parent
         text: "THIS IS MAIN MENU "+item.width+" "+item.height
         color: "green"
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            //Logic.changeStatus(Logic.statusEnum.Game);
-            loader.state = "Start->Game";
-        }
     }
 }
