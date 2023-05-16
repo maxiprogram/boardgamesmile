@@ -45,6 +45,8 @@ qt_add_qml_module(appBoardGame
         images/cube.gif
         images/background_menu.png
         images/button_menu.png
+        fonts/SpeedRush-JRKVB.ttf
+        fonts/MinecraftEvenings-RBao.ttf
 )
 
 set_target_properties(appBoardGame PROPERTIES

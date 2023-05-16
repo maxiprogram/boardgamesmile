@@ -9,6 +9,11 @@ Item {
     property variant playerObjectAI
     property string statusGame: "game"
 
+    FontLoader {
+        id: fontCell
+        source: "fonts/SpeedRush-JRKVB.ttf"
+    }
+
     Item {
         id: itemGrid
         //x: 60 * wrapper.ratio

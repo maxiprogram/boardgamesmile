@@ -13,6 +13,11 @@ Item {
 //    border.width: 5
 //    radius: 10
 
+    FontLoader {
+        id: fontStart
+        source: "fonts/MinecraftEvenings-RBao.ttf"
+    }
+
     Image {
         id: imageBackground
         anchors.fill: parent
@@ -28,6 +33,10 @@ Item {
         source: "images/button_menu.png"
 
         Text {
+            font.family: fontStart.font.family
+            font.weight: fontStart.font.weight
+            font.pixelSize: 64
+            color: "red"
             anchors.centerIn: parent
             text: "PLAY"
         }
@@ -49,6 +58,10 @@ Item {
         source: "images/button_menu.png"
 
         Text {
+            font.family: fontStart.font.family
+            font.weight: fontStart.font.weight
+            font.pixelSize: 64
+            color: "red"
             anchors.centerIn: parent
             text: "OPTION"
         }
@@ -63,6 +76,10 @@ Item {
         source: "images/button_menu.png"
 
         Text {
+            font.family: fontStart.font.family
+            font.weight: fontStart.font.weight
+            font.pixelSize: 64
+            color: "red"
             anchors.centerIn: parent
             text: "EXIT"
         }
