@@ -44,7 +44,10 @@ qt_add_qml_module(appBoardGame
         images/playerAI.png
         images/cube.gif
         images/background_menu.png
+        images/background_game_level.png
         images/button_menu.png
+        images/panel_player.png
+        images/panel_player_ai.png
         fonts/SpeedRush-JRKVB.ttf
         fonts/MinecraftEvenings-RBao.ttf
 )

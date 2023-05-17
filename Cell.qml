@@ -24,10 +24,11 @@ Image {
     Text {
         //font: fontCell.font
         anchors.horizontalCenter: parent.horizontalCenter
-        font.family: fontCell.font.family
-        font.weight: fontCell.font.weight
+        //font.family: fontCell.font.family
+        //font.weight: fontCell.font.weight
         font.pixelSize: 16
-        color: "yellow"
+        font.bold: true
+        color: "#7c0680"
         text: textCell
     }
 }

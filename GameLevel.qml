@@ -14,6 +14,13 @@ Item {
         source: "fonts/SpeedRush-JRKVB.ttf"
     }
 
+    Image {
+        id: imageBackground
+        anchors.fill: parent
+        fillMode: Image.Tile
+        source: "images/background_game_level.png"
+    }
+
     Item {
         id: itemGrid
         //x: 60 * wrapper.ratio
@@ -30,14 +37,32 @@ Item {
         y: 1320 * wrapper.ratio
         width: 600 * wrapper.ratio
         height: 246 * wrapper.ratio
-        color: "#00000000"
+        color: "#FFFFFFFF"
+        radius: 10
 
+        Image {
+            id: imagePlayerPanel
+            anchors.verticalCenter: parent.verticalCenter
+            x: 26 * wrapper.ratio
+            width: 164 * wrapper.ratio
+            height: 164 * wrapper.ratio
+            source: "images/panel_player.png"
+        }
+
+        Image {
+            id: imagePlayerAIPanel
+            anchors.verticalCenter: parent.verticalCenter
+            x: 410 * wrapper.ratio
+            width: 164 * wrapper.ratio
+            height: 164 * wrapper.ratio
+            source: "images/panel_player_ai.png"
+        }
 
         Rectangle {
             anchors.centerIn: itemPanel
             width: 200 * wrapper.ratio
             height: 200 * wrapper.ratio
-            color: "#FFFF0000"
+            color: "#FFFFFF"
             //border.color: "blue"
             //border.width: 5
             radius: 10
@@ -75,6 +100,7 @@ Item {
             id: textRandom
             anchors.centerIn: itemPanel
             text: "Click to Random"
+            color: "#00000000"
         }
 
         MouseArea {

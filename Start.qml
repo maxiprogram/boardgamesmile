@@ -93,9 +93,9 @@ Item {
     }
 
 
-    Text {
-        anchors.centerIn: parent
-        text: "THIS IS MAIN MENU "+item.width+" "+item.height
-        color: "green"
-    }
+//    Text {
+//        anchors.centerIn: parent
+//        text: "THIS IS MAIN MENU "+item.width+" "+item.height
+//        color: "green"
+//    }
 }
