@@ -36,7 +36,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         y: 1320 * wrapper.ratio
         width: 600 * wrapper.ratio
-        height: 246 * wrapper.ratio
+        //height: 246 * wrapper.ratio
+        height: 268 * wrapper.ratio
         color: "#FFFFFFFF"
         radius: 10
 
@@ -101,6 +102,28 @@ Item {
             anchors.centerIn: itemPanel
             text: "Click to Random"
             color: "#00000000"
+        }
+
+        Text {
+            id: textPlayerName
+            //font: fontCell.font
+            font.family: fontCell.font.family
+            font.weight: fontCell.font.weight
+            font.pixelSize: 20
+            anchors.horizontalCenter: imagePlayerPanel.horizontalCenter
+            anchors.top: imagePlayerPanel.bottom
+            text: "Player"
+        }
+
+        Text {
+            id: textPlayerAIName
+            //font: fontCell.font
+            font.family: fontCell.font.family
+            font.weight: fontCell.font.weight
+            font.pixelSize: 20
+            anchors.horizontalCenter: imagePlayerAIPanel.horizontalCenter
+            anchors.top: imagePlayerAIPanel.bottom
+            text: "Computer"
         }
 
         MouseArea {
@@ -220,13 +243,20 @@ Item {
         }
     }
 
-    MouseArea {
-        width: 50
-        height: 50
-        onClicked: {
-            loader.state = "Game->Start";
+    Image {
+        id: imageButtonBack
+        width: 146 * wrapper.ratio * 0.7
+        height: 154 * wrapper.ratio * 0.7
+        source: "images/button_back.png"
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                loader.state = "Game->Start";
+            }
         }
     }
+
 
     states: [
         State {

@@ -36,6 +36,7 @@ Item {
             font.family: fontStart.font.family
             font.weight: fontStart.font.weight
             font.pixelSize: 64
+            //font.pointSize: 50
             color: "red"
             anchors.centerIn: parent
             text: "PLAY"
@@ -61,9 +62,17 @@ Item {
             font.family: fontStart.font.family
             font.weight: fontStart.font.weight
             font.pixelSize: 64
+            //font.pointSize: 50
             color: "red"
             anchors.centerIn: parent
             text: "OPTION"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                loader.state = "Start->Option";
+            }
         }
     }
 
@@ -79,6 +88,7 @@ Item {
             font.family: fontStart.font.family
             font.weight: fontStart.font.weight
             font.pixelSize: 64
+            //font.pointSize: 50
             color: "red"
             anchors.centerIn: parent
             text: "EXIT"

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Window
+import QtMultimedia
 
 import "js/scaling-ratio.js" as ScalingRatio
 import net.maxiprogram.scalingratiowrapper
@@ -10,7 +11,7 @@ Window {
     height: 900
     //visibility: "FullScreen"
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Board Game Smile")
     color: "black"
 
     ScalingRatioWrapper {
@@ -48,11 +49,34 @@ Window {
                         target: loader;
                         source: "Start.qml"
                     }
+                },
+                State {
+                    name: "Start->Option"
+                    PropertyChanges {
+                        target: loader;
+                        source: "Option.qml"
+                    }
+                },
+                State {
+                    name: "Option->Start"
+                    PropertyChanges {
+                        target: loader;
+                        source: "Start.qml"
+                    }
                 }
             ]
         }
     }
 
+    SoundEffect {
+        id: soundBackground
+        source: "sounds/background.wav"
+        loops: SoundEffect.Infinite
+    }
+
+    Component.onCompleted: {
+        soundBackground.play();
+    }
 
 
 //    Cell {
@@ -76,10 +100,10 @@ Window {
 //    }
 
 
-    Text {
-        text: "Width: " + mainWindow.width + " Height: " + mainWindow.height
-        color: "red"
-    }
+//    Text {
+//        text: "Width: " + mainWindow.width + " Height: " + mainWindow.height
+//        color: "red"
+//    }
 
 //    FpsItem {
 //        anchors.centerIn: parent

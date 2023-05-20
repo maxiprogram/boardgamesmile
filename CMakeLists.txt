@@ -5,6 +5,7 @@ project(BoardGame VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Multimedia)
 
 qt_standard_project_setup()
 
@@ -28,6 +29,7 @@ qt_add_qml_module(appBoardGame
     QML_FILES
         Main.qml
         Start.qml
+        Option.qml
         GameLevel.qml
         Player.qml
         Cell.qml
@@ -46,10 +48,14 @@ qt_add_qml_module(appBoardGame
         images/background_menu.png
         images/background_game_level.png
         images/button_menu.png
+        images/button_back.png
+        images/sound_on.png
+        images/sound_off.png
         images/panel_player.png
         images/panel_player_ai.png
         fonts/SpeedRush-JRKVB.ttf
         fonts/MinecraftEvenings-RBao.ttf
+        sounds/background.wav
 )
 
 set_target_properties(appBoardGame PROPERTIES
@@ -61,7 +67,7 @@ set_target_properties(appBoardGame PROPERTIES
 )
 
 target_link_libraries(appBoardGame
-    PRIVATE Qt6::Quick
+    PRIVATE Qt6::Quick Qt6::Multimedia
 )
 
 install(TARGETS appBoardGame

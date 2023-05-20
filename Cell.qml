@@ -27,6 +27,7 @@ Image {
         //font.family: fontCell.font.family
         //font.weight: fontCell.font.weight
         font.pixelSize: 16
+        //font.pointSize: 10
         font.bold: true
         color: "#7c0680"
         text: textCell
