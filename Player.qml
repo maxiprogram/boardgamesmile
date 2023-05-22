@@ -76,7 +76,12 @@ Image {
                     }
                     console.debug("Changed state");
                 } else if(itemGame.statusGame === "win") {
-                    textDebug.text = "YOU WIN "+player.name;
+                    if(player.name === "PlayerAI") {
+                        itemGame.state = "Lose";
+                    } else if(player.name === "Player") {
+                        itemGame.state = "Win";
+                    }
+                    //textDebug.text = "YOU WIN "+player.name;
                 }
             }
         }
@@ -105,7 +110,12 @@ Image {
                     }
                     console.debug("Changed state");
                 } else if(itemGame.statusGame === "win") {
-                    textDebug.text = "YOU WIN "+player.name;
+                    if(player.name === "PlayerAI") {
+                        itemGame.state = "Lose";
+                    } else if(player.name === "Player") {
+                        itemGame.state = "Win";
+                    }
+                    //textDebug.text = "YOU WIN "+player.name;
                 }
             }
         }
@@ -134,7 +144,12 @@ Image {
                     }
                     console.debug("Changed state");
                 } else if(itemGame.statusGame === "win") {
-                    textDebug.text = "YOU WIN "+player.name;
+                    if(player.name === "PlayerAI") {
+                        itemGame.state = "Lose";
+                    } else if(player.name === "Player") {
+                        itemGame.state = "Win";
+                    }
+                    //textDebug.text = "YOU WIN "+player.name;
                 }
             }
         }

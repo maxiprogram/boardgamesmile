@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import QtMultimedia
+import Qt.labs.settings
 
 import "js/scaling-ratio.js" as ScalingRatio
 import net.maxiprogram.scalingratiowrapper
@@ -75,7 +76,15 @@ Window {
     }
 
     Component.onCompleted: {
-        soundBackground.play();
+        if(settings.sound) {
+            soundBackground.play();
+        }
+    }
+
+    Settings {
+        id: settings
+        property string username: "Player"
+        property bool sound: true
     }
 
 

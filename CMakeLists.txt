@@ -53,9 +53,15 @@ qt_add_qml_module(appBoardGame
         images/sound_off.png
         images/panel_player.png
         images/panel_player_ai.png
+        images/arrow.gif
+        images/win.gif
+        images/lose.gif
+        images/anim_win.gif
         fonts/SpeedRush-JRKVB.ttf
         fonts/MinecraftEvenings-RBao.ttf
         sounds/background.wav
+        sounds/win.wav
+        sounds/lose.wav
 )
 
 set_target_properties(appBoardGame PROPERTIES

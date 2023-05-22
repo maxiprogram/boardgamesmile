@@ -1,4 +1,5 @@
 import QtQuick
+import QtMultimedia
 
 
 import "js/logic.js" as Logic
@@ -95,7 +96,19 @@ Item {
                     }
                 }
             }
+
+            AnimatedImage {
+                id: animArrow
+                anchors.horizontalCenter: animCube.horizontalCenter
+                anchors.bottom: animCube.top
+                width: 217 * wrapper.ratio * 0.6
+                height: 286 * wrapper.ratio * 0.6
+                source: "images/arrow.gif"
+                playing: true
+                visible: false
+            }
         }
+
 
         Text {
             id: textRandom
@@ -112,7 +125,7 @@ Item {
             font.pixelSize: 20
             anchors.horizontalCenter: imagePlayerPanel.horizontalCenter
             anchors.top: imagePlayerPanel.bottom
-            text: "Player"
+            text: settings.username
         }
 
         Text {
@@ -129,6 +142,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
+                animArrow.visible = false;
                 if(itemGame.state === "AwaitStep") {
                     runStepPlayer();
                 }
@@ -243,6 +257,100 @@ Item {
         }
     }
 
+    function finish(state) {
+        if(state === "win") {
+            imageFinish.source = "images/win.gif";
+            textDebug.text = "YOU WIN !!!";
+            animFinish.playing = true;
+            imageFinish.playing = true;
+            animFinish.visible = true;
+            imageFinish.visible = true;
+            textDebug.visible = true;
+            soundFinish.source = "sounds/win.wav";
+            soundFinish.play();
+        }
+        if(state === "lose") {
+            imageFinish.source = "images/lose.gif";
+            textDebug.text = "YOU LOSE !!!";
+            imageFinish.playing = true;
+            imageFinish.visible = true;
+            textDebug.visible = true;
+            soundFinish.source = "sounds/lose.wav";
+            soundFinish.play();
+        }
+    }
+
+
+    states: [
+        State {
+            name: "AwaitStep"
+            PropertyChanges {
+                target: animArrow
+                visible: true
+            }
+        },
+        State {
+            name: "EndStepPlayer"
+            StateChangeScript {
+                script: runStepPlayerAI()
+            }
+        },
+        State {
+            name: "Win"
+            StateChangeScript {
+                script: finish("win")
+            }
+        },
+        State {
+            name: "Lose"
+            StateChangeScript {
+                script: finish("lose")
+            }
+        }
+    ]
+
+//    Test {
+
+//    }
+
+    AnimatedImage {
+        id: animFinish
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 512 * wrapper.ratio
+        height: 512 * wrapper.ratio
+        source: "images/anim_win.gif"
+        playing: false
+        visible: false
+    }
+
+    AnimatedImage {
+        id: imageFinish
+        anchors.centerIn: parent
+        width: 520 * wrapper.ratio
+        height: 520 * wrapper.ratio
+        source: "images/win.gif"
+        playing: false
+        visible: false
+    }
+
+    Text {
+        id: textDebug
+        anchors.bottom: imageFinish.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.family: fontCell.font.family
+        font.weight: fontCell.font.weight
+        font.pixelSize: 46
+        text: "YOU WIN !!!"
+        color: "yellow"
+        visible: false
+    }
+
+
+    SoundEffect {
+        id: soundFinish
+        source: "sounds/win.wav"
+    }
+
     Image {
         id: imageButtonBack
         width: 146 * wrapper.ratio * 0.7
@@ -255,29 +363,5 @@ Item {
                 loader.state = "Game->Start";
             }
         }
-    }
-
-
-    states: [
-        State {
-            name: "AwaitStep"
-        },
-        State {
-            name: "EndStepPlayer"
-            StateChangeScript {
-                script: runStepPlayerAI()
-            }
-        }
-    ]
-
-//    Test {
-
-//    }
-
-    Text {
-        id: textDebug
-        anchors.centerIn: parent
-        //text: "THIS IS GAME LEVEL "+item.width+" "+item.height
-        color: "red"
     }
 }

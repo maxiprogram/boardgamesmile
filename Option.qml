@@ -44,12 +44,17 @@ Item {
         id: textInput
         anchors.centerIn: parent
         width: parent.width * 0.6
-        text: "Player"
+        text: settings.username
         font.pixelSize: 34
         font.bold: true
         color: "red"
         maximumLength: 12
         //inputMask: "AAAAAAAAAAAA;_"
+
+        onAccepted: {
+            //console.log(textInput.text);
+            settings.username = textInput.text;
+        }
     }
 
     Text {
@@ -80,11 +85,24 @@ Item {
     }
 
     Image {
+        id: imageSound
         anchors.top: imageSoundBackground.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: 146 * wrapper.ratio
         height: 154 * wrapper.ratio
-        source: "images/sound_on.png"
+        source: settings.sound ? "images/sound_on.png" : "images/sound_off.png"
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                settings.sound = !settings.sound;
+                if(settings.sound) {
+                    soundBackground.play();
+                } else {
+                    soundBackground.stop();
+                }
+            }
+        }
     }
 
 
