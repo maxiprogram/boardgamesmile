@@ -79,3 +79,4 @@ target_link_libraries(appBoardGame
 install(TARGETS appBoardGame
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
