@@ -22,6 +22,7 @@ Item {
     Image {
         id: imageBackground
         anchors.fill: parent
+        fillMode: Image.Tile
         source: "images/background_menu.png"
     }
 
@@ -32,12 +33,21 @@ Item {
 //    }
 
 
-    Image {
+//    Image {
+//        id: imageTextInput
+//        anchors.centerIn: parent
+//        width: parent.width * 0.8
+//        height: 252 * wrapper.ratio
+//        source: "images/button_menu.png"
+//    }
+
+    Rectangle {
         id: imageTextInput
         anchors.centerIn: parent
         width: parent.width * 0.8
-        height: 252 * wrapper.ratio
-        source: "images/button_menu.png"
+        height: 122 * wrapper.ratio
+        color: "white"
+        radius: 10
     }
 
     TextInput {
@@ -64,29 +74,29 @@ Item {
         font.pixelSize: 32
     }
 
-    Image {
-        id: imageSoundBackground
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: imageTextInput.bottom
-        width: parent.width * 0.8
-        height: 252 * wrapper.ratio
-        source: "images/button_menu.png"
+//    Image {
+//        id: imageSoundBackground
+//        anchors.horizontalCenter: parent.horizontalCenter
+//        anchors.top: imageTextInput.bottom
+//        width: parent.width * 0.8
+//        height: 252 * wrapper.ratio
+//        source: "images/button_menu.png"
 
-        Text {
-            id: textSoundBackground
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 35
-            text: "Music"
-            font.pixelSize: 34
-            font.bold: true
-            color: "red"
-        }
-    }
+//        Text {
+//            id: textSoundBackground
+//            anchors.verticalCenter: parent.verticalCenter
+//            anchors.left: parent.left
+//            anchors.leftMargin: 35
+//            text: "Music"
+//            font.pixelSize: 34
+//            font.bold: true
+//            color: "red"
+//        }
+//    }
 
     Image {
         id: imageSound
-        anchors.top: imageSoundBackground.bottom
+        anchors.top: imageTextInput.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: 146 * wrapper.ratio
         height: 154 * wrapper.ratio

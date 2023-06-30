@@ -21,6 +21,7 @@ Item {
     Image {
         id: imageBackground
         anchors.fill: parent
+        fillMode: Image.Tile
         source: "images/background_menu.png"
     }
 

@@ -15,6 +15,17 @@ Window {
     title: qsTr("Board Game Smile")
     color: "black"
 
+    onWidthChanged: {
+        console.debug("onWidthChanged");
+        wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
+    }
+
+    onHeightChanged: {
+        console.debug("onHeightChanged");
+        wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
+        //console.debug("itemPanel.y="+loader.itemPanel.y);
+    }
+
     ScalingRatioWrapper {
         id: wrapper
         anchors.fill: parent
@@ -22,10 +33,10 @@ Window {
         refHeight: 1600
         Component.onCompleted: {
             console.debug("QML ScalingRatioWrapper.onCompleted");
-            wrapper.calculateRatio();
+            //wrapper.calculateRatio();
             //wrapper.calculateRatioRef(720, 1600);
             //wrapper.calculateRatioRefTo(720, 1600, 1920, 1080);
-            //wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
+            wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
             //wrapper.updateScaleChildrens();
             console.debug("QML ScalingRatioWrapper.onCompleted ratio="+ratio);
             console.debug("QML realWidth="+Screen.width+" realHeight="+Screen.height);
