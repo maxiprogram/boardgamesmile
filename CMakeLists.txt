@@ -74,8 +74,8 @@ set_target_properties(appBoardGame PROPERTIES
 )
 
 set_property(TARGET appBoardGame APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-set_property(TARGET appBoardGame APPEND PROPERTY QT_ANDROID_TARGET_SDK_VERSION 31)
-set_property(TARGET appBoardGame APPEND PROPERTY QT_ANDROID_VERSION_CODE 3)
+set_property(TARGET appBoardGame APPEND PROPERTY QT_ANDROID_TARGET_SDK_VERSION 33)
+set_property(TARGET appBoardGame APPEND PROPERTY QT_ANDROID_VERSION_CODE 5)
 
 target_link_libraries(appBoardGame
     PRIVATE Qt6::Quick Qt6::Multimedia
