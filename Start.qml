@@ -36,7 +36,7 @@ Item {
         Text {
             font.family: fontStart.font.family
             font.weight: fontStart.font.weight
-            font.pixelSize: 64
+            font.pixelSize: 110 * Math.min(item.height/1600, item.width/720) //64
             //font.pointSize: 50
             color: "red"
             anchors.centerIn: parent
@@ -46,6 +46,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
+                wrapper.gameplayStartJS();
                 loader.state = "Start->Game";
             }
         }
@@ -62,7 +63,7 @@ Item {
         Text {
             font.family: fontStart.font.family
             font.weight: fontStart.font.weight
-            font.pixelSize: 64
+            font.pixelSize: 110 * Math.min(item.height/1600, item.width/720) //64
             //font.pointSize: 50
             color: "red"
             anchors.centerIn: parent
@@ -88,7 +89,7 @@ Item {
         Text {
             font.family: fontStart.font.family
             font.weight: fontStart.font.weight
-            font.pixelSize: 64
+            font.pixelSize: 110 * Math.min(item.height/1600, item.width/720) //64
             //font.pointSize: 50
             color: "red"
             anchors.centerIn: parent
@@ -103,6 +104,9 @@ Item {
         }
     }
 
+    Component.onCompleted: {
+        //console.debug("QML ratio: " + Math.min(item.height/1600, item.width/720));
+    }
 
 //    Text {
 //        anchors.centerIn: parent

@@ -1,5 +1,10 @@
 #include "scalingratiowrapper.h"
 
+#ifdef Q_OS_WASM
+#include <emscripten/val.h>
+#include <emscripten.h>
+#endif
+
 ScalingRatioWrapper::ScalingRatioWrapper(QQuickItem *parent)
     : QQuickItem{parent}
 {
@@ -102,4 +107,32 @@ void ScalingRatioWrapper::updateScaleChildrens()
         qDebug()<<children;
         qDebug()<<children->property("x");
     }
+}
+
+void ScalingRatioWrapper::gameplayStartJS()
+{
+#ifdef Q_OS_WASM
+    /*emscripten::val location = emscripten::val::global("location");
+    auto host = location["hostname"].as<std::string>();
+    auto port = location["port"].as<std::string>();
+    qDebug()<<"host:"<<host<<" port:"<<port;
+
+    emscripten_run_script("alert('hi')");*/
+
+    emscripten_run_script("window.CrazyGames.SDK.game.gameplayStart();");
+#endif
+}
+
+void ScalingRatioWrapper::gameplayStopJS()
+{
+#ifdef Q_OS_WASM
+    emscripten_run_script("window.CrazyGames.SDK.game.gameplayStop();");
+#endif
+}
+
+void ScalingRatioWrapper::startVideoAdsJS()
+{
+#ifdef Q_OS_WASM
+    emscripten_run_script("window.CrazyGames.SDK.ad.requestAd('midgame', callbacksVideoAds);");
+#endif
 }

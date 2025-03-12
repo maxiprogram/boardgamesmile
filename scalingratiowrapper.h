@@ -23,6 +23,9 @@ public:
     Q_INVOKABLE void calculateRatioRef(qreal refWidth, qreal refHeight);
     Q_INVOKABLE void calculateRatioRefTo(qreal refWidth, qreal refHeight, qreal realWidth, qreal realHeight);
     Q_INVOKABLE void updateScaleChildrens();
+    Q_INVOKABLE void gameplayStartJS();
+    Q_INVOKABLE void gameplayStopJS();
+    Q_INVOKABLE void startVideoAdsJS();
 
     void setRefWidth(qreal value);
     void setRefHeight(qreal value);

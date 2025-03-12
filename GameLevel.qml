@@ -122,7 +122,7 @@ Item {
             //font: fontCell.font
             font.family: fontCell.font.family
             font.weight: fontCell.font.weight
-            font.pixelSize: 20
+            font.pixelSize: 34 * wrapper.ratio //20
             anchors.horizontalCenter: imagePlayerPanel.horizontalCenter
             anchors.top: imagePlayerPanel.bottom
             text: settings.username
@@ -133,7 +133,7 @@ Item {
             //font: fontCell.font
             font.family: fontCell.font.family
             font.weight: fontCell.font.weight
-            font.pixelSize: 20
+            font.pixelSize: 34 * wrapper.ratio //20
             anchors.horizontalCenter: imagePlayerAIPanel.horizontalCenter
             anchors.top: imagePlayerAIPanel.bottom
             text: "Computer"
@@ -278,6 +278,7 @@ Item {
             soundFinish.source = "sounds/lose.wav";
             soundFinish.play();
         }
+        wrapper.startVideoAdsJS();
     }
 
 
@@ -360,6 +361,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
+                wrapper.gameplayStopJS();
                 loader.state = "Game->Start";
             }
         }

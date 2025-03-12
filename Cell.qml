@@ -26,7 +26,7 @@ Image {
         anchors.horizontalCenter: parent.horizontalCenter
         //font.family: fontCell.font.family
         //font.weight: fontCell.font.weight
-        font.pixelSize: 16
+        font.pixelSize: 27 * Math.min(item.height/1600, item.width/720) //16
         //font.pointSize: 10
         font.bold: true
         color: "#7c0680"
