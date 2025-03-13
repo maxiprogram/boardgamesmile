@@ -15,16 +15,30 @@ Window {
     title: qsTr("Board Game Smile")
     color: "black"
 
-   onWidthChanged: {
-       console.debug("onWidthChanged");
-       wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
-   }
+    onWidthChanged: {
+        console.debug("onWidthChanged:", mainWindow.width);
+        wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
+        // console.debug("State:", loader.source);
+        // if(loader.source == "GameLevel.qml") {
+        //     console.debug("Try itemGame");
+        //     console.debug(loader.itemGame);
+        //     console.debug(itemGame.playerObject);
+        //     console.debug(itemGame.playerObject.x);
+        // }
 
-   onHeightChanged: {
-       console.debug("onHeightChanged");
-       wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
-       //console.debug("itemPanel.y="+loader.itemPanel.y);
-   }
+        loader.active = !loader.active;
+        loader.active = !loader.active;
+    }
+
+    onHeightChanged: {
+        console.debug("onHeightChanged:", mainWindow.height);
+        wrapper.calculateRatioRefTo(720, 1600, mainWindow.width, mainWindow.height);
+        //console.debug("itemPanel.y="+loader.itemPanel.y);
+        //console.debug("State:", loader.source);
+
+        loader.active = !loader.active;
+        loader.active = !loader.active;
+    }
 
     ScalingRatioWrapper {
         id: wrapper
